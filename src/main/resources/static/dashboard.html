@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RIVAANE | Console</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+<header class="admin-nav">
+    <a class="brand" href="index.html">RIVAANE</a>
+    <nav>
+        <a href="index.html">Website</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div>RIVAANE Administrator <button class="outline" onclick="logout()">Logout</button></div>
+</header>
+<div class="admin-layout">
+    <aside>
+        <p class="eyebrow">MANAGEMENT</p>
+        <button class="side active" onclick="showPanel('overview', this)">Overview</button>
+        <button class="side" onclick="showPanel('roomsAdmin', this)">Rooms</button>
+        <button class="side" onclick="showPanel('reservations', this)">Reservations</button>
+        <button class="side" onclick="showPanel('guests', this)">Guests</button>
+        <button class="side" onclick="showPanel('staff', this)">Staff</button>
+        <button class="side" onclick="showPanel('billing', this)">Billing</button>
+        <button class="side" onclick="showPanel('housekeeping', this)">Housekeeping</button>
+        <button class="side" onclick="showPanel('concepts', this)">Java Concepts</button>
+    </aside>
+    <main class="admin-main">
+        <section id="overview" class="panel active">
+            <p class="eyebrow">MANAGEMENT CONSOLE</p><h1>Good evening, Administrator.</h1>
+            <div class="stats">
+                <article>Total rooms<strong id="statRooms">0</strong></article><article>Available<strong id="statAvailable">0</strong></article>
+                <article>Reserved<strong id="statReserved">0</strong></article><article>Occupied<strong id="statOccupied">0</strong></article>
+                <article>Cleaning<strong id="statCleaning">0</strong></article><article>Active reservations<strong id="statReservations">0</strong></article>
+                <article>Guests<strong id="statGuests">0</strong></article><article>Staff<strong id="statStaff">0</strong></article><article>Revenue<strong id="statRevenue">₹0</strong></article>
+            </div>
+        </section>
+        <section id="roomsAdmin" class="panel">
+            <div class="panel-head"><div><p class="eyebrow">INVENTORY</p><h2>Room management</h2></div><button class="button" onclick="openRoomForm()">+ Add room</button></div>
+            <input id="adminRoomSearch" placeholder="Search rooms..." oninput="loadAdminRooms()">
+            <div class="table-wrap"><table><thead><tr><th>Room</th><th>Type</th><th>Price</th><th>Capacity</th><th>Status</th><th>Actions</th></tr></thead><tbody id="roomsTable"></tbody></table></div>
+        </section>
+        <section id="reservations" class="panel">
+            <p class="eyebrow">BOOKINGS</p><h2>Reservations</h2>
+            <div class="table-wrap"><table><thead><tr><th>ID</th><th>Guest</th><th>Room</th><th>Check-in</th><th>Check-out</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead><tbody id="reservationsTable"></tbody></table></div>
+        </section>
+        <section id="guests" class="panel">
+            <p class="eyebrow">GUEST RELATIONS</p><h2>Guests</h2><input id="guestSearch" placeholder="Search by name, email, or phone..." oninput="loadGuests()">
+            <div class="table-wrap"><table><thead><tr><th>Guest name</th><th>Email</th><th>Phone</th></tr></thead><tbody id="guestsTable"></tbody></table></div>
+        </section>
+        <section id="staff" class="panel">
+            <div class="panel-head"><div><p class="eyebrow">STAFF MANAGEMENT</p><h2>Staff</h2></div><button class="button" onclick="openStaffForm()">+ Add staff</button></div>
+            <input id="staffSearch" placeholder="Search staff..." oninput="loadStaff()">
+            <div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Position</th><th>Department</th><th>Salary</th><th>Status</th><th>Actions</th></tr></thead><tbody id="staffTable"></tbody></table></div>
+        </section>
+        <section id="billing" class="panel">
+            <div class="panel-head"><div><p class="eyebrow">BILLING</p><h2>Invoices</h2></div><button class="button" onclick="openInvoiceForm()">+ Generate Invoice</button></div>
+            <div class="table-wrap"><table><thead><tr><th>Invoice ID</th><th>Guest</th><th>Reservation</th><th>Total</th><th>Tax</th><th>Discount</th><th>Grand Total</th><th>Status</th><th>Actions</th></tr></thead><tbody id="invoicesTable"></tbody></table></div>
+        </section>
+        <section id="housekeeping" class="panel"><p class="eyebrow">OPERATIONS</p><h2>Housekeeping</h2><div id="housekeepingAnalytics" class="status-row"></div><div id="housekeepingGrid" class="card-grid"></div></section>
+        <section id="concepts" class="panel"><p class="eyebrow">PROJECT LEARNING</p><h2>Java concepts demonstrated</h2><div id="conceptGrid" class="card-grid"></div></section>
+    </main>
+</div>
+<div id="roomModal" class="modal"><div class="modal-card"><button class="close" onclick="closeRoomForm()">×</button><p class="eyebrow">ROOM INVENTORY</p><h2 id="roomModalTitle">Add room</h2>
+    <form id="roomForm"><input type="hidden" id="editRoomId"><div class="form-grid"><input id="roomName" placeholder="Room name" required><select id="roomTypeAdmin"><option>Standard</option><option>Deluxe</option><option>Executive</option><option>Suite</option><option>Presidential</option><option>Family</option><option>Villa</option></select><input id="roomPrice" type="number" min="1" placeholder="Price per night" required><input id="roomCapacity" type="number" min="1" placeholder="Capacity" required><input id="roomImage" placeholder="Image keyword"><textarea id="roomDescription" placeholder="Description"></textarea></div><button class="button" type="submit">Save room</button><p id="roomFormMessage" class="notice"></p></form>
+</div></div>
+<div id="staffModal" class="modal"><div class="modal-card"><button class="close" onclick="closeStaffForm()">×</button><p class="eyebrow">STAFF MANAGEMENT</p><h2 id="staffModalTitle">Add staff</h2>
+    <form id="staffForm"><input type="hidden" id="editStaffId"><div class="form-grid"><input id="staffName" placeholder="Full name" required><input id="staffEmail" type="email" placeholder="Email" required><input id="staffPhone" placeholder="Phone" required><input id="staffPosition" placeholder="Position" required><input id="staffDepartment" placeholder="Department" required><input id="staffSalary" type="number" min="1" placeholder="Salary" required><select id="staffStatus"><option>ACTIVE</option><option>INACTIVE</option><option>ON_LEAVE</option></select></div><button class="button" type="submit">Save staff</button><p id="staffFormMessage" class="notice"></p></form>
+</div></div>
+<div id="invoiceModal" class="modal"><div class="modal-card"><button class="close" onclick="closeInvoiceForm()">×</button><p class="eyebrow">BILLING</p><h2>Generate Invoice</h2>
+    <form id="invoiceForm"><div class="form-grid"><select id="invoiceReservation" required><option value="">Select reservation</option></select><input id="invoiceTax" type="number" min="0" step="0.01" placeholder="Tax (%)" value="18"><input id="invoiceDiscount" type="number" min="0" step="0.01" placeholder="Discount (%)"></div><button class="button" type="submit">Generate invoice</button><p id="invoiceFormMessage" class="notice"></p></form>
+</div></div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RIVAANE | Heritage Meets Luxury</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="nav">
+        <a class="brand" href="/">RIVAANE</a>
+        <nav>
+            <a href="#rooms">Rooms</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a class="outline" href="login.html">Admin</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">A Royal Stay · A Modern Soul</p>
+                <h1>Where Heritage<br>Meets <em>Luxury</em></h1>
+                <p>Indian hospitality, palace architecture, and contemporary comfort woven into one unforgettable stay.</p>
+                <a class="button" href="#rooms">Explore Rooms</a>
+            </div>
+        </section>
+
+        <section class="intro">
+            <div>
+                <p class="eyebrow">The RIVAANE Experience</p>
+                <h2>A Palace Stay,<br>Reimagined.</h2>
+            </div>
+            <div class="muted">
+                <p>RIVAANE brings together the warmth of Indian hospitality, the grandeur of palace architecture and the sophistication of modern luxury.</p>
+                <p>Every room, detail and experience is crafted to make your stay unforgettable.</p>
+            </div>
+        </section>
+
+        <section class="search-band">
+            <p class="eyebrow">Find Your Stay</p>
+            <h2>Choose Your Sanctuary</h2>
+            <div class="search">
+                <label>Check-In<input id="checkIn" type="date"></label>
+                <label>Check-Out<input id="checkOut" type="date"></label>
+                <button class="button" onclick="checkAvailability()">Check Availability</button>
+            </div>
+            <p id="availabilityMessage" class="notice"></p>
+        </section>
+
+        <section id="rooms" class="rooms">
+            <div class="section-head">
+                <div>
+                    <p class="eyebrow">Stay in Splendour</p>
+                    <h2>Signature Rooms & Suites</h2>
+                </div>
+                <p class="muted">Spaces inspired by royal India, designed for today's traveller.</p>
+            </div>
+            <div class="filters">
+                <input id="roomSearch" placeholder="Search rooms..." oninput="loadRooms()">
+                <select id="roomType" onchange="loadRooms()">
+                    <option value="all">All rooms</option>
+                    <option>Presidential</option>
+                    <option>Suite</option>
+                    <option>Deluxe</option>
+                    <option>Executive</option>
+                    <option>Standard</option>
+                    <option>Family</option>
+                    <option>Villa</option>
+                </select>
+            </div>
+            <div id="roomGrid" class="room-grid"></div>
+        </section>
+
+        <section id="experience" class="experience">
+            <div class="experience-image"></div>
+            <div>
+                <p class="eyebrow">Beyond a Room</p>
+                <h2 style="color:rgb(90, 65, 1);">Hospitality Rooted in Riwaayat</h2>
+                <p class="muted" style="color:black;">From traditional Indian artistry to contemporary comforts, RIVAANE celebrates heritage without compromising modern luxury.</p>
+                <a class="button" href="services.html">Explore Services</a>
+            </div>
+        </section>
+
+        <section id="story" class="story">
+            <p class="eyebrow">Our Story</p>
+            <h2>Crafted for Those Who Appreciate the Extraordinary</h2>
+            <p class="muted">RIVAANE is where centuries-old Indian hospitality meets contemporary design. Every corner tells a story, every stay becomes a memory.</p>
+            <a class="button" href="about.html">Learn More</a>
+        </section>
+    </main>
+
+    <footer>
+        <strong>RIVAANE</strong>
+        <span>Where Heritage Meets Luxury</span>
+        <small>© 2026 RIVAANE Hotels</small>
+    </footer>
+
+    <div id="bookingModal" class="modal">
+        <div class="modal-card">
+            <button class="close" onclick="closeBooking()">×</button>
+            <p class="eyebrow">Reserve Your Stay</p>
+            <h2 id="bookingRoomName">Room</h2>
+            <form id="bookingForm">
+                <input type="hidden" id="bookingRoomId">
+                <div class="form-grid">
+                    <input id="guestName" placeholder="Full name" required>
+                    <input id="guestEmail" type="email" placeholder="Email" required>
+                    <input id="guestPhone" placeholder="Phone" required>
+                    <input id="bookingCheckIn" type="date" required>
+                    <input id="bookingCheckOut" type="date" required>
+                </div>
+                <div>
+                    <label><input type="radio" name="payment" value="CARD" checked> Card</label>
+                    <label><input type="radio" name="payment" value="UPI"> UPI</label>
+                </div>
+                <button class="button" type="submit">Confirm & Pay</button>
+            </form>
+            <div id="bookingResult"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

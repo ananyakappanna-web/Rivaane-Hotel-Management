@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RIVAANE | Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+    <header class="nav">
+        <a class="brand" href="index.html">RIVAANE</a>
+        <nav>
+            <a href="index.html">Website</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    
+    <main class="login-card">
+        <p class="eyebrow">Administration</p>
+        <h1>Welcome Back</h1>
+        <p class="muted">Enter your credentials to access the management console.</p>
+        <form id="loginForm">
+            <label>Email<input id="loginEmail" type="email" value="admin@rivaane.com" required></label>
+            <label>Password<input id="loginPassword" type="password" value="rivaane123" required></label>
+            <button class="button" type="submit">Sign In</button>
+        </form>
+        <p id="loginMessage" class="notice"></p>
+        <small class="muted">Demo: admin@rivaane.com / rivaane123</small>
+    </main>
+    
+    <script src="app.js"></script>
+</body>
+</html>
