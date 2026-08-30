@@ -2,3 +2,8 @@ target/
 .idea/
 .vscode/
 *.class
+node_modules/
+target/
+*.log
+*.pid
+*.jpg
